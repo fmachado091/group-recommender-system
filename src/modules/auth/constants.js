@@ -1,0 +1,1 @@
+export const ATTEMPT_LOGIN = 'modules.login.attempt_login';
