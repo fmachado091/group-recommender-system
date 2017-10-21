@@ -12,7 +12,7 @@ const styles = (theme) => ({
   },
 });
 
-function Home({ classes, isLoggingIn, onLoginClick }) {
+function Home({ classes, isLoggingIn, onLoginClick, code }) {
   return (
     <div className="Home">
       <header className="Home-header">
@@ -24,7 +24,7 @@ function Home({ classes, isLoggingIn, onLoginClick }) {
         color="primary" 
         className={classes.button} 
         onClick={onLoginClick}
-        disabled={isLoggingIn}
+        disabled={isLoggingIn || code}
       >
         Login to Spotify
       </Button>
@@ -36,6 +36,7 @@ Home.propTypes = {
   classes: PropTypes.shape({
     button: PropTypes.string,
   }),
+  code: PropTypes.string,
   isLoggingIn: PropTypes.bool,
   onLoginClick: PropTypes.func,
 }

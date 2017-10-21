@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux'
 import { fromJS } from 'immutable';
 import { LOCATION_CHANGE } from 'react-router-redux';
-import { routerReducer } from 'react-router-redux'
 import auth from './auth/reducer';
 
 // Initial routing state

@@ -1,4 +1,3 @@
-import request from '../utils/request';
 import { JUKIFY_CLIENT_ID, SPOTIFY_AUTH_URL } from './constants';
 
 export const buildQueryStrings = (obj) =>
