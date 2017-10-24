@@ -19,5 +19,4 @@ ReactDOM.render(
   , 
   document.getElementById('root')
 );
-// TODO: Enable once SSL is enabled on host
-// registerServiceWorker();
+registerServiceWorker();
