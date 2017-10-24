@@ -3,12 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "express": "^4.16.2",
     "history": "^4.7.2",
     "immutable": "^3.8.2",
     "material-ui": "^1.0.0-beta.17",
     "material-ui-icons": "^1.0.0-beta.17",
-    "morgan": "^1.9.0",
     "qhistory": "^1.0.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
