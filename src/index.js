@@ -16,7 +16,8 @@ ReactDOM.render(
           <App />
       </MuiThemeProvider>
     </ConnectedRouter>
-  </Provider>, 
+  </Provider>
+  , 
   document.getElementById('root')
 );
 // TODO: Enable once SSL is enabled on host
