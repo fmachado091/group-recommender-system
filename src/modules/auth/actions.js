@@ -21,6 +21,6 @@ export function fetchUserInfo(code) {
 export function updateUserInfo(userInfo) {
   return {
     type: UPDATE_USER_INFO,
-    payload: { userInfo },
+    payload: userInfo ? { ...userInfo } : null,
   }
 }

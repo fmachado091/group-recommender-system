@@ -12,7 +12,6 @@ function localStorageKeyPredicate(keyString) {
 
 function addStorageListener(predicate, cb) {
   window.addEventListener('storage', (event) => {
-    console.log(event);
     if (predicate(event)) {
         cb(event.value);
     }

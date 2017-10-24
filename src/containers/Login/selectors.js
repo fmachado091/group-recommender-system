@@ -19,7 +19,9 @@ const makeSelectUserInfo = () => createSelector(
 );
 
 const makeSelectIsLoggedIn = () => createSelector(
-  selectUserInfo, (userInfo) => !!(userInfo),
+  selectUserInfo, (userInfo) => {
+    return !!(userInfo)
+  }
 );
 
 export {

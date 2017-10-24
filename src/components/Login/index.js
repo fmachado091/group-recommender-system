@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Redirect } from 'react-router'
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import Logo from '../Logo';
@@ -16,14 +15,7 @@ class Login extends React.PureComponent {
   }
 
   render() {
-    const { classes, location, isLoggedIn, onLoginClick } = this.props;
-    const { from } = location.state || { from: { pathname: '/' } };
-
-    if(isLoggedIn) {
-      return (
-        <Redirect to={from} />
-      );
-    }
+    const { classes, isLoggedIn, onLoginClick } = this.props;
 
     return(
       <div className={classes.root}>
