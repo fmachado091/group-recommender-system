@@ -45,5 +45,17 @@ export default function request(url, options) {
     .then(parseJSON);
 }
 
+export function postRequest(url, body) {
+  const options = {
+    method: 'POST',
+    body: JSON.stringify(body),
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  };
+  return request(url, options);
+}
+
 export const buildQueryStrings = (obj) =>
   Object.keys(obj).map((k) => `${encodeURIComponent(k)}=${encodeURIComponent(obj[k])}`).join('&');

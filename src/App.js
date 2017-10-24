@@ -1,6 +1,10 @@
 import React from 'react';
-import { Route, Switch } from "react-router-dom";
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Route, Switch } from 'react-router-dom';
 import Loadable from 'react-loadable';
+import { updateUserInfo } from './modules/auth/actions';
+import { PrivateRoute } from './utils/routing';
 import Loading from './components/Loading';
 
 const NotFound = Loadable({
@@ -8,18 +12,38 @@ const NotFound = Loadable({
   loading: Loading,
 });
 
-const Home = Loadable({
-  loader: () => import('./containers/Home'),
+const Login = Loadable({
+  loader: () => import('./containers/Login'),
   loading: Loading,
 })
 
-function App(props) {
-  return (
-    <Switch>
-      <Route path="/" exact component={Home} />
-      <Route component={NotFound} />
-    </Switch>
-  );
+class App extends React.PureComponent {
+  componentWillMount() {
+    this.props.registerUserInfo();
+  }
+
+  render() {
+    return(
+      <Switch>
+        <PrivateRoute path="/" exact  component={NotFound} />
+        <Route path="/login" component={Login} />
+        <Route component={NotFound} />
+      </Switch>
+    );
+  }
 }
 
-export default App;
+// TODO: Make syncWithLocalStorage work and drop this (I know it's ugly =/)
+function mapDispatchToProps(dispatch) {
+  const userInfo = localStorage.getItem('userInfo');
+  return {
+    registerUserInfo: (routes) => dispatch(updateUserInfo(userInfo)),
+    dispatch,
+  };
+}
+
+App.propTypes = {
+  registerUserInfo: PropTypes.func,
+};
+
+export default connect(null, mapDispatchToProps)(App);

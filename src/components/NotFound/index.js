@@ -3,12 +3,12 @@ import './NotFound.css';
 
 export default function NotFound() {
   return (
-    <div class="container">
-      <div class="boo-wrapper">
-        <div class="boo">
-          <div class="face"></div>
+    <div className="container">
+      <div className="boo-wrapper">
+        <div className="boo">
+          <div className="face"></div>
         </div>
-        <div class="shadow"></div>
+        <div className="shadow"></div>
     
         <h1>Whoops!</h1>
         <p>
