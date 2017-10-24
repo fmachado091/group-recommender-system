@@ -7,7 +7,6 @@ import store, { history } from './store';
 import theme from './assets/theme';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-
 import './index.css';
 
 ReactDOM.render(
@@ -21,5 +20,4 @@ ReactDOM.render(
   , 
   document.getElementById('root')
 );
-// TODO: Enable once SSL is enabled on host
 registerServiceWorker();
