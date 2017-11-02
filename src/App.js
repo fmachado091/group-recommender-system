@@ -17,6 +17,11 @@ const Login = Loadable({
   loading: Loading,
 })
 
+const Groups = Loadable({
+  loader: () => import('./containers/Groups'),
+  loading: Loading,
+});
+
 class App extends React.PureComponent {
   componentWillMount() {
     this.props.registerUserInfo();
@@ -26,6 +31,7 @@ class App extends React.PureComponent {
     return(
       <Switch>
         <PrivateRoute path="/" exact  component={NotFound} />
+        <PrivateRoute path="/groups" component={Groups} />
         <Route path="/login" component={Login} />
         <Route component={NotFound} />
       </Switch>
@@ -35,7 +41,7 @@ class App extends React.PureComponent {
 
 // TODO: Make syncWithLocalStorage work and drop this (I know it's ugly =/)
 function mapDispatchToProps(dispatch) {
-  const userInfo = localStorage.getItem('userInfo');
+  const userInfo = JSON.parse(localStorage.getItem('userInfo'));
   return {
     registerUserInfo: (routes) => dispatch(updateUserInfo(userInfo)),
     dispatch,

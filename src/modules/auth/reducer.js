@@ -7,7 +7,7 @@ const initialState = fromJS({
 });
 
 function handleLoginAttempt(state) {
-  return state.set({ isLoggingIn: true });
+  return state.set('isLoggingIn', true);
 }
 
 function updateUserInfo(state, { payload }) {

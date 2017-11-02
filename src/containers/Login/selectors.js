@@ -25,6 +25,7 @@ const makeSelectIsLoggedIn = () => createSelector(
 );
 
 export {
+  selectUserInfo,
   makeSelectIsLoggingIn,
   makeSelectAuthCode,
   makeSelectIsLoggedIn,
