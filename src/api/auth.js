@@ -5,14 +5,15 @@ export const buildQueryStrings = (obj) =>
   Object.keys(obj).map((k) => `${encodeURIComponent(k)}=${encodeURIComponent(obj[k])}`).join('&');
 
 export function attemptLogin() {
+  const scopes = ['user-library-read', 'user-top-read', 'playlist-read-private', 'playlist-modify-public'];
   const query = buildQueryStrings({
     client_id: JUKIFY_CLIENT_ID,
     response_type: 'code',
     redirect_uri: `${process.env.REACT_APP_BASE_URI}/login`,
+    scope: scopes.join(' '),
     state: 'csrfToken',
   });
   const endpoint = `${SPOTIFY_AUTH_URL}?${query}`;
-  
   return window.location.href = endpoint;
 }
 

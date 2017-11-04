@@ -32,6 +32,7 @@ function Group({ classes, groupId, users, name, onUserClick, onAddUserClicked })
       </CardContent>
       <CardActions>
         <Button color="primary" dense onClick={onAddUserClicked(groupId)}>Add User</Button>
+        <Button color="primary" dense>See Playlist</Button>
       </CardActions>
       <AddUserDialog groupId={groupId} />
     </Card>
