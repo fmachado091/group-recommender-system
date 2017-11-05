@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Redirect, Switch, withRouter } from 'react-router-dom';
 import Loadable from 'react-loadable';
 import { updateUserInfo } from './modules/auth/actions';
 import { PrivateRoute } from './utils/routing';
@@ -30,7 +30,9 @@ class App extends React.PureComponent {
   render() {
     return(
       <Switch>
-        <PrivateRoute path="/" exact  component={NotFound} />
+        <Route path="/" exact render={() => (
+          <Redirect to="/groups"/>
+        )}/>
         <PrivateRoute path="/groups" component={Groups} />
         <Route path="/login" component={Login} />
         <Route component={NotFound} />
@@ -52,4 +54,4 @@ App.propTypes = {
   registerUserInfo: PropTypes.func,
 };
 
-export default connect(null, mapDispatchToProps)(App);
+export default withRouter(connect(null, mapDispatchToProps)(App));
