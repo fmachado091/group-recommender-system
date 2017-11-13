@@ -29,9 +29,9 @@ class AddUserDialog extends React.PureComponent {
     ));
 
     return (
-      <Dialog onRequestClose={this.handleRequestClose} {...other}>
+      <Dialog fullScreen onRequestClose={this.handleRequestClose} {...other}>
         <DialogTitle>Add user to group</DialogTitle>
-        <div>
+        <div style={{ overflowY: 'scroll' }}>
           <List>
             {userItems}
           </List>
