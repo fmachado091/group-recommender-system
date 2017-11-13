@@ -7,8 +7,8 @@ import CreateGroupButton from './CreateGroup';
 
 const ContentWrapper = styled.div`
   padding: 0 24px;
-  margin-bottom: 16px;
-  max-width: 1032px;
+  margin: auto;
+  max-width: 900x;
 `;
 
 export function Groups({ user, groups, onNewGroupClicked, onAddUserClicked, onRemoveUserClick }) {
