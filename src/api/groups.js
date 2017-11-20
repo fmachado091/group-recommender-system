@@ -22,3 +22,8 @@ export function removeUserFromGroup(groupId, user) {
     body: JSON.stringify({ user_id: user })
   });  
 }
+
+export function fetchGroupPlaylist(groupId) {
+  const endpoint = `/api/group/${groupId}/playlist`;
+  return request(endpoint);
+}

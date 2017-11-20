@@ -25,7 +25,7 @@ class AddUserDialog extends React.PureComponent {
   render() {
     const { classes, users, onRequestClose, ...other } = this.props;
     const userItems = users.map((user, index) => (
-      <User name={user} index={index} key={user} onClick={this.handleListItemClick(user)} />
+      <User name={user.name} index={index} key={user} onClick={this.handleListItemClick(user.id)} />
     ));
 
     return (

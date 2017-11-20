@@ -19,6 +19,7 @@ export function Groups({ user, groups, onNewGroupClicked, onAddUserClicked, onRe
       users={group.users}
       onAddUserClicked={onAddUserClicked}
       onUserClick={onRemoveUserClick(group.id)}
+      playlist={group.playlist}
       groupId={group.id}
     />)
   );

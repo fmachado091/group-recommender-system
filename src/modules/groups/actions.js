@@ -1,6 +1,6 @@
 import {
   CREATE_GROUP,
-  FETCH_GROUP_USERS,
+  ADD_GROUP,
   OPEN_ADD_USER,
   CLOSE_ADD_USER,
   REMOVE_USER,
@@ -11,6 +11,7 @@ import {
   fetchGroupUsers as requestGroupUsers,
   addUserToGroup,
   removeUserFromGroup as requestUserRemoval,
+  fetchGroupPlaylist as requestGroupPlaylist,
 } from '../../api/groups';
 import {
   fetchUserGroups as requestUserGroups
@@ -19,7 +20,17 @@ import {
 export function fetchUserGroups(userId) {
   return async (dispatch, getState) => {
     const userGroups = await requestUserGroups(userId);
-    userGroups.map((groupId) => dispatch(fetchGroupUsers(groupId)));
+    userGroups.map((groupId) => {
+      dispatch(fetchGroupInfo(groupId))    
+    });
+  }
+}
+
+export function fetchGroupInfo(groupId) {
+  return async (dispatch, getState) => {
+    const groupUsers = await requestGroupUsers(groupId);
+    const groupPlaylistResponse = await requestGroupPlaylist(groupId);
+    dispatch(addGroup(groupId, groupUsers, groupPlaylistResponse.playlist_url));
   }
 }
 
@@ -50,13 +61,14 @@ export function fetchAddUserToGroup(groupId, selectedUser) {
   }
 }
 
-export function fetchGroupUsers(groupId) {
+export function addGroup(id, users, playlist) {
   return {
-    type: FETCH_GROUP_USERS,
-    meta: {
-      groupId,
-    },
-    promise: requestGroupUsers(groupId),
+    type: ADD_GROUP,
+    group: {
+      id,
+      users,
+      playlist,
+    }
   }
 }
 
@@ -71,11 +83,12 @@ export function removeUserFromGroup(groupId, userId) {
   }
 }
 
-export function createGroup({ name, id: creatorId }) {
+export function createGroup({ name: creatorName, id: creatorId }) {
   return {
     type: CREATE_GROUP,
     meta: {
       creatorId,
+      creatorName,
     },
     promise: requestGroupCreation(creatorId),
   }

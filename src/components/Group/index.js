@@ -9,7 +9,8 @@ import User from '../User';
 
 const styles = (theme) => ({
   root: {
-    marginTop: theme.spacing.unit * 2,
+    marginTop: theme.spacing.unit,
+    marginBottom: theme.spacing.unit * 2,
   },
   title: {
     fontSize: 17,
@@ -17,9 +18,9 @@ const styles = (theme) => ({
   }
 });
 
-function Group({ classes, groupId, users, name, onUserClick, onAddUserClicked }) {
+function Group({ classes, groupId, users, name, onUserClick, onAddUserClicked, playlist }) {
   const userItems = users.map((user, index) => (
-    <User name={user} index={index} key={index} onClick={onUserClick(user)} />
+    <User name={user.name} index={index} key={index} onClick={onUserClick(user.id)} />
   ));
 
   return (
@@ -32,7 +33,11 @@ function Group({ classes, groupId, users, name, onUserClick, onAddUserClicked })
       </CardContent>
       <CardActions>
         <Button color="primary" dense onClick={onAddUserClicked(groupId)}>Add User</Button>
-        <Button color="primary" dense>See Playlist</Button>
+        { playlist && 
+          <Button color="primary" label="See Playlist" href={playlist} target="_blank" dense>
+            See Playlist
+          </Button>
+        }
       </CardActions>
       <AddUserDialog groupId={groupId} />
     </Card>
@@ -49,6 +54,7 @@ Group.propTypes = {
   onUserClick: PropTypes.func,
   onAddUserClicked: PropTypes.func,
   isAddUserActive: PropTypes.bool,
+  playlist: PropTypes.string,
 };
 
 export default withStyles(styles)(Group);
